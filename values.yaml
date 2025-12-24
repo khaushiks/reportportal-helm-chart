@@ -1257,7 +1257,7 @@ postgresql:
 ## Set @param rabbitmq.install to `false` if using a Cloud/On-Premise managed RabbitMQ
 ##
 rabbitmq:
-  install: true
+  install: false
   image:
     repository: bitnamilegacy/rabbitmq
     tag: 4.1.2-debian-12-r1
@@ -1310,7 +1310,7 @@ opensearch:
 ## Set @param minio.install to `false` if using a Cloud/On-Premise managed binary storage
 ##
 minio:
-  install: true
+  install: false
   image:
     repository: bitnamilegacy/minio
     tag: 2025.7.23-debian-12-r0
