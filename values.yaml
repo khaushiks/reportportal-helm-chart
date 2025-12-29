@@ -1265,7 +1265,7 @@ postgresql:
 ## Set @param rabbitmq.install to `false` if using a Cloud/On-Premise managed RabbitMQ
 ##
 rabbitmq:
-  install: false
+  install: true
   image:
     repository: bitnamilegacy/rabbitmq
     tag: 4.1.2-debian-12-r1
