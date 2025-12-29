@@ -1278,6 +1278,9 @@ rabbitmq:
   ## @param rabbitmq.extraPlugins define additional RabbitMQ plugins to be enabled
   ## Required for the ReportPortal to work
   ##
+  persistence:  # ← ADD THIS SECTION
+    enabled: true
+    size: 10Gi  # ← Critical: Azure requires minimum 10Gi
   extraPlugins: >
     rabbitmq_auth_backend_ldap
     rabbitmq_consistent_hash_exchange
