@@ -1008,8 +1008,9 @@ ingress:
   enable: true
   ## @param ingress.hosts can be a list or a single string
   ##
-  hosts: null
-  path: ""
+  hosts:
+    - reportportal.52.159.248.77.nip.io
+  path: "/"
   class: nginx
   ## @param ingress.annotations Ingress annotations
   ## Add annotations based on your ingress controller
