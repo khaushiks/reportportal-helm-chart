@@ -1288,7 +1288,7 @@ rabbitmq:
     limits:
       cpu: "300m"    # Reduced from 375m
       memory: "384M"
-  extraPlugins: >
+  extraPlugins: 
     rabbitmq_auth_backend_ldap
     rabbitmq_consistent_hash_exchange
     rabbitmq_shovel
