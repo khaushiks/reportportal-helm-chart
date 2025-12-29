@@ -29,7 +29,7 @@ global:
   ## Set to true when deploying with ArgoCD to ensure proper resource ordering
   ##
   argocd:
-    enabled: false
+    enabled: true
   ## @param global.securityContext Default security context for all pods
   ##
   securityContext: {}
