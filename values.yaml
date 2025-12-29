@@ -247,11 +247,11 @@ serviceapi:
     failureThreshold: 10
   resources:
     requests:
-      cpu: 500m
-      memory: 1Gi
+      cpu: 150m
+      memory: 512Mi
     limits:
-      cpu: 1000m
-      memory: 2Gi
+      cpu: 300m
+      memory: 1Gi
   ## @param serviceapi.extraInitContainers init containers
   ##
   extraInitContainers: {}
@@ -426,11 +426,11 @@ uat:
     failureThreshold: 10
   resources:
     requests:
-      cpu: 100m
-      memory: 512Mi
+      cpu: 80m
+      memory: 384Mi
     limits:
-      cpu: 500m
-      memory: 1Gi
+      cpu: 200m
+      memory: 768Mi
   sessionLiveTime: 86400
   samlSessionLiveTime: 4320
   ## @param uat.extraInitContainers init containers
@@ -644,11 +644,11 @@ serviceanalyzer:
   uwsgiWorkers: 2
   resources:
     requests:
-      cpu: 500m
-      memory: 512Mi
+      cpu: 100m
+      memory: 256Mi
     limits:
-      cpu: 500m
-      memory: 1Gi
+      cpu: 200m
+      memory: 512Mi
   ## @param serviceanalyzer.extraInitContainers init containers
   ##
   extraInitContainers: {}
@@ -727,7 +727,7 @@ migrations:
     tag: 5.15.0
   resources:
     requests:
-      cpu: 100m
+      cpu: 50m
       memory: 128Mi
     limits:
       cpu: 100m
@@ -1249,6 +1249,13 @@ postgresql:
     password: *dbpassword
     database: *dbname
   primary:
+    resources:
+      requests:
+        cpu: "50m"
+        memory: "128Mi"
+      limits:
+        cpu: "100m"
+        memory: "192Mi"
     service:
       ports:
         postgresql: *dbport
