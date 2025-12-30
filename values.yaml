@@ -435,7 +435,18 @@ uat:
   samlSessionLiveTime: 4320
   ## @param uat.extraInitContainers init containers
   ##
-  extraInitContainers: {}
+  extraInitContainers: 
+    - name: wait-for-minio
+      image: busybox:1.36
+      command: ['sh', '-c']
+      args:
+        - |
+          echo "Waiting for MinIO to be ready..."
+          until wget --quiet --tries=1 --spider http://report-minio:9000/minio/health/live; do
+            echo "MinIO not ready yet... sleeping 5s"
+            sleep 5
+          done
+          echo "MinIO is ready!"
   ## @param uat.extraVolumes define the extra volumes
   ##
   extraVolumes: []
