@@ -436,14 +436,14 @@ uat:
   ## @param uat.extraInitContainers init containers
   ##
   extraInitContainers: 
-    - name: wait-for-minio
-      image: busybox:1.36
+      - name: wait-for-minio
+      image: curlimages/curl:8.12.0  # ← Use curl image (more reliable)
       command: ['sh', '-c']
       args:
         - |
           echo "Waiting for MinIO..."
-          until nslookup reportportal-minio && \
-             wget --quiet --tries=1 --spider http://reportportal-minio:9000/minio/health/live; do
+          until nslookup report-minio.report.svc.cluster.local && \
+             curl -sf http://report-minio:9000/minio/health/live; do
             echo "MinIO not ready — retrying in 5s..."
             sleep 5
           done
