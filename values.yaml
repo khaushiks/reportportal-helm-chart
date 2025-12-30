@@ -441,9 +441,10 @@ uat:
       command: ['sh', '-c']
       args:
         - |
-          echo "Waiting for MinIO to be ready..."
-          until wget --quiet --tries=1 --spider http://report-minio:9000/minio/health/live; do
-            echo "MinIO not ready yet... sleeping 5s"
+          echo "Waiting for MinIO DNS and HTTP..."
+          until nslookup report-minio.report.svc.cluster.local && \
+             wget --quiet --tries=1 --spider http://report-minio:9000/minio/health/live; do
+            echo "MinIO not ready (DNS or HTTP) — retrying in 5s..."
             sleep 5
           done
           echo "MinIO is ready!"
