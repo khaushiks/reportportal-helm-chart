@@ -1283,10 +1283,10 @@ rabbitmq:
     size: 10Gi  # ← Critical: Azure requires minimum 10Gi
   resources:  # ← ADD THIS SECTION
     requests:
-      cpu: "100m"    # Reduced from 250m → fixes "Insufficient cpu"
+      cpu: "50m"    # Reduced from 250m → fixes "Insufficient cpu"
       memory: "256Mi"
     limits:
-      cpu: "300m"    # Reduced from 375m
+      cpu: "200m"    # Reduced from 375m
       memory: "384M"
   extraPlugins: 
     rabbitmq_auth_backend_ldap
