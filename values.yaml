@@ -895,7 +895,7 @@ storage:
     ## because ReportPortal will create a separate S3 bucket for each project in the portal
     ## Use single bucket strategy which creates one bucket with subdirectories for better management.
     ##
-    type: multi
+    type: single
 
     ## @param storage.bucket.bucketDefaultName Default bucket name
     ## For single bucket mode: this is the main bucket name
