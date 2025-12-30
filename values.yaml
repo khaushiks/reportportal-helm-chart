@@ -1328,7 +1328,7 @@ opensearch:
 ## Set @param minio.install to `false` if using a Cloud/On-Premise managed binary storage
 ##
 minio:
-  install: false
+  install: true
   image:
     repository: bitnamilegacy/minio
     tag: 2025.7.23-debian-12-r0
