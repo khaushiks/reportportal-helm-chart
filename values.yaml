@@ -436,7 +436,7 @@ uat:
   ## @param uat.extraInitContainers init containers
   ##
   extraInitContainers: 
-      - name: wait-for-minio
+    - name: wait-for-minio
       image: curlimages/curl:8.12.0  # ← Use curl image (more reliable)
       command: ['sh', '-c']
       args:
