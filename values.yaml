@@ -198,6 +198,8 @@ serviceapi:
   patternAnalysis:
     batchSize: 1000
     cron: "0 0 */24 * * *"
+  auditLogs:
+    enable: false
   service:
     labels: {}
     annotations: {}
