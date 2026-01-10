@@ -244,7 +244,7 @@ uat:
     limits:
       cpu: 150m
       memory: 512Mi
-  jvmArgs: "-Djava.security.egd=file:/dev/./urandom -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0"
+  jvmArgs: "-Djava.security.egd=file:/dev/./urandom -XX:+UseG1GC -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0"
   readinessProbe:
     enabled: true
     initialDelaySeconds: 60
@@ -269,7 +269,9 @@ uat:
   extraInitContainers:
     - name: wait-for-minio
       image: curlimages/curl:8.12.0
-      command: ['sh', '-c']
+      command:
+        - sh
+        - -c
       args:
         - |
           echo "Waiting for MinIO..."
