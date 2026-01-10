@@ -215,6 +215,8 @@ uat:
     periodSeconds: 40
     timeoutSeconds: 5
     failureThreshold: 10
+  secret:
+    enabled: false
   service:
     labels: {}
     annotations: {}
