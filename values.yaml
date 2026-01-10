@@ -200,6 +200,29 @@ serviceapi:
     cron: "0 0 */24 * * *"
   auditLogs:
     enable: false
+  amqp:
+    exchange: "reportportal"
+    queues:
+      - name: "analyzer-index"
+        routingKey: "analyzer.index"
+        durable: true
+        exclusive: false
+        autoDelete: false
+      - name: "analyzer-train"
+        routingKey: "analyzer.train"
+        durable: true
+        exclusive: false
+        autoDelete: false
+      - name: "analyzer-suggest"
+        routingKey: "analyzer.suggest"
+        durable: true
+        exclusive: false
+        autoDelete: false
+      - name: "analyzer-remove"
+        routingKey: "analyzer.remove"
+        durable: true
+        exclusive: false
+        autoDelete: false
   service:
     labels: {}
     annotations: {}
