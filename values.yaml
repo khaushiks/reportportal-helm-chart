@@ -217,6 +217,10 @@ uat:
     failureThreshold: 10
   secret:
     enabled: false
+  superadminInitPasswd:
+    secretName: ""
+    passwordKeyName: "superadmin-password"
+    password: ""
   service:
     labels: {}
     annotations: {}
@@ -233,7 +237,7 @@ uat:
             sleep 5
           done
           echo "MinIO is ready!"
-# --- Keep migrations (required on first install) ---
+
 migrations:
   image:
     repository: reportportal/migrations
@@ -247,7 +251,6 @@ migrations:
       cpu: 100m
       memory: 128Mi
 
-# --- Infrastructure: keep but reduce footprint ---
 postgresql:
   install: true
   auth:
@@ -321,15 +324,17 @@ opensearch:
     - name: DISABLE_SECURITY_PLUGIN
       value: "true"
 
-# --- Storage & DB config (unchanged defaults) ---
 database:
   password: rppassword
+
 msgbroker:
   vhost: analyzer
   password: rabbitmqpassword
   ssl: false
+
 searchengine:
   ssl: false
+
 storage:
   type: minio
   accesskey: rpuser
@@ -339,7 +344,6 @@ storage:
     bucketDefaultName: "rp-bucket"
   ssl: false
 
-# --- Ingress (keep as-is if you need external access) ---
 ingress:
   enable: true
   hosts:
@@ -348,13 +352,12 @@ ingress:
   class: nginx
   annotations: {}
 
-# --- Disable resource quota (not needed) ---
 resourceQuota:
   enabled: false
 
-# --- RBAC & hooks (keep minimal) ---
 rbac:
   create: true
+
 hooks:
   preUpgrade:
     enabled: true
