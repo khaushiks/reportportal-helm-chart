@@ -186,7 +186,11 @@ serviceapi:
     timeoutSeconds: 30
     failureThreshold: 3
   secret:
-    enabled: false   # ← ADD THIS
+    enabled: false
+  cronJobs:
+    loadPlugins:
+      enabled: false
+      schedule: "0 */6 * * *"
   service:
     labels: {}
     annotations: {}
