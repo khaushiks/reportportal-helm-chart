@@ -1341,13 +1341,16 @@ opensearch:
 ##
 minio:
   install: true
+  image:
+    repository: bitnamilegacy/minio
+    tag: 2025.7.23-debian-12-r0
   auth:
     rootUser: rpuser
     rootPassword: miniopassword
   persistence:
-    enabled: true
-    size: 10Gi
-    # Do NOT set storageClassName unless you know it's required
-    # storageClassName: ""   ← Only uncomment if needed
+    enabled: true          # ← Add this
+    size: 10Gi             # ← Critical for Azure
+    annotations:
+      "helm.sh/resource-policy": "keep"
   console:
     enabled: false
