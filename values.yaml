@@ -277,8 +277,7 @@ uat:
     args:
     - |
       echo "Waiting for MinIO..."
-      until nslookup reportportal-minio && \
-      curl -sf http://reportportal-minio:9000/minio/health/live; do
+      while ! curl -sf http://reportportal-minio:9000/minio/health/live; do
         echo "MinIO not ready — retrying in 5s..."
         sleep 5
       done
