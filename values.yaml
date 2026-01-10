@@ -195,6 +195,9 @@ serviceapi:
     loadPlugins:
       enabled: false
       schedule: "0 */6 * * *"
+  patternAnalysis:
+    batchSize: 1000
+    cron: "0 0 */24 * * *"
   service:
     labels: {}
     annotations: {}
