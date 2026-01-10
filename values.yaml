@@ -1334,8 +1334,7 @@ opensearch:
   ## @param opensearch.httpPort Port for OpenSearch endpoint
   ##
   httpPort: *searchenginePort
-  master:
-    persistence:
+  persistence:
       enabled: true
       size: 10Gi
       storageClass: "default"
