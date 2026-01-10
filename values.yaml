@@ -321,6 +321,7 @@ storage:
   bucket:
     type: single
     bucketDefaultName: "rp-bucket"
+  ssl: false
 
 # --- Ingress (keep as-is if you need external access) ---
 ingress:
