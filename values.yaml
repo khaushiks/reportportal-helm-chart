@@ -16,6 +16,10 @@ global:
   pdb:
     create: true
     maxUnavailable: "1"
+    
+k8s:
+  networking:
+    ssl: false
 
 k8sWaitFor:
   image:
