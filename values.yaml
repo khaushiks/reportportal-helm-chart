@@ -17,12 +17,39 @@ global:
     create: true
     maxUnavailable: "1"
 
-# --- Disable non-core services ---
 serviceanalyzer:
   replicaCount: 0
+  image:
+    repository: reportportal/service-auto-analyzer
+    tag: 5.15.0
+    pullPolicy: Always
+  resources:
+    requests:
+      cpu: 10m
+      memory: 64Mi
+    limits:
+      cpu: 50m
+      memory: 128Mi
+  service:
+    labels: {}
+    annotations: {}
 
 servicejobs:
   replicaCount: 0
+  image:
+    repository: reportportal/service-jobs
+    tag: 5.15.0
+    pullPolicy: Always
+  resources:
+    requests:
+      cpu: 10m
+      memory: 64Mi
+    limits:
+      cpu: 50m
+      memory: 128Mi
+  service:
+    labels: {}
+    annotations: {}
 
 # --- Keep only essential services with minimal resources ---
 serviceindex:
