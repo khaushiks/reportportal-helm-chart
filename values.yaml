@@ -389,6 +389,10 @@ ingress:
   path: "/"
   class: nginx
   annotations: {}
+  tls:
+    enabled: false
+    certificate:
+      gcpManaged: false
 
 resourceQuota:
   enabled: false
