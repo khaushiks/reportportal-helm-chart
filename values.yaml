@@ -44,6 +44,9 @@ serviceui:
     limits:
       cpu: 100m
       memory: 128Mi
+  service:
+    labels: {}
+    annotations: {}
 
 serviceapi:
   replicaCount: 1
@@ -55,6 +58,9 @@ serviceapi:
       cpu: 200m
       memory: 768Mi
   jvmArgs: "-Djava.security.egd=file:/dev/./urandom -XX:+UseG1GC -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0"
+  service:
+    labels: {}
+    annotations: {}
 
 uat:
   replicaCount: 1
@@ -66,6 +72,9 @@ uat:
       cpu: 150m
       memory: 512Mi
   jvmArgs: "-Djava.security.egd=file:/dev/./urandom -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0"
+  service:
+    labels: {}
+    annotations: {}
   extraInitContainers:
     - name: wait-for-minio
       image: curlimages/curl:8.12.0
