@@ -230,6 +230,7 @@ serviceapi:
   service:
     labels: {}
     annotations: {}
+  env: []
 
 uat:
   replicaCount: 1
@@ -281,6 +282,7 @@ uat:
         sleep 5
       done
       echo "MinIO is ready!"
+  env: []
 
 migrations:
   image:
