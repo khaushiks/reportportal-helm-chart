@@ -311,6 +311,7 @@ database:
 msgbroker:
   vhost: analyzer
   password: rabbitmqpassword
+  ssl: false
 searchengine:
   ssl: false
 storage:
