@@ -23,6 +23,12 @@ k8sWaitFor:
     tag: latest
     pullPolicy: Always
 
+kubectl:
+  image:
+    repository: bitnamisecure/kubectl
+    tag: latest
+    pullPolicy: Always
+
 serviceanalyzer:
   replicaCount: 0
   image:
@@ -46,6 +52,28 @@ servicejobs:
     repository: reportportal/service-jobs
     tag: 5.15.0
     pullPolicy: Always
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 60
+    periodSeconds: 40
+    timeoutSeconds: 5
+    failureThreshold: 10
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 60
+    periodSeconds: 40
+    timeoutSeconds: 5
+    failureThreshold: 10
+  coreJobs:
+    cleanEventsRetention: 365
+    cleanEventsCron: "0 0 */24 * * *"
+    cleanAttachmentCron: "0 0 */24 * * *"
+    cleanLogCron: "0 0 */24 * * *"
+    cleanLaunchCron: "0 0 */24 * * *"
+    batchSize: 10000
+    cleanStorageCron: "0 0 */24 * * *"
+    storageProjectCron: "0 */5 * * * *"
+  chunksize: 200000
   resources:
     requests:
       cpu: 10m
