@@ -179,7 +179,7 @@ serviceapi:
     limits:
       cpu: 200m
       memory: 768Mi
-  jvmArgs: '-Djava.security.egd=file:/dev/./urandom -XX:+UseG1GC -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0'
+  jvmArgs: "-Djava.security.egd=file:/dev/./urandom -XX:+UseG1GC -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0"
   readinessProbe:
     enabled: true
     initialDelaySeconds: 120
@@ -204,28 +204,28 @@ serviceapi:
   auditLogs:
     enable: false
   amqp:
-    exchange: "reportportal"
+    exchange: reportportal
     queues:
-      - name: "analyzer-index"
-        routingKey: "analyzer.index"
-        durable: true
-        exclusive: false
-        autoDelete: false
-      - name: "analyzer-train"
-        routingKey: "analyzer.train"
-        durable: true
-        exclusive: false
-        autoDelete: false
-      - name: "analyzer-suggest"
-        routingKey: "analyzer.suggest"
-        durable: true
-        exclusive: false
-        autoDelete: false
-      - name: "analyzer-remove"
-        routingKey: "analyzer.remove"
-        durable: true
-        exclusive: false
-        autoDelete: false
+    - name: analyzer-index
+      routingKey: analyzer.index
+      durable: true
+      exclusive: false
+      autoDelete: false
+    - name: analyzer-train
+      routingKey: analyzer.train
+      durable: true
+      exclusive: false
+      autoDelete: false
+    - name: analyzer-suggest
+      routingKey: analyzer.suggest
+      durable: true
+      exclusive: false
+      autoDelete: false
+    - name: analyzer-remove
+      routingKey: analyzer.remove
+      durable: true
+      exclusive: false
+      autoDelete: false
   chunksize: 200000
   service:
     labels: {}
@@ -244,7 +244,7 @@ uat:
     limits:
       cpu: 150m
       memory: 512Mi
-  jvmArgs: "-Djava.security.egd=file:/dev/./urandom -XX:+UseG1GC -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0"
+  jvmArgs: "-Djava.security.egd=file:/dev/./urandom -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0"
   readinessProbe:
     enabled: true
     initialDelaySeconds: 60
@@ -261,26 +261,26 @@ uat:
     enabled: false
   superadminInitPasswd:
     secretName: ""
-    passwordKeyName: "superadmin-password"
+    passwordKeyName: superadmin-password
     password: ""
   service:
     labels: {}
     annotations: {}
   extraInitContainers:
-    - name: wait-for-minio
-      image: curlimages/curl:8.12.0
-      command:
-        - sh
-        - -c
-      args:
-        - |
-          echo "Waiting for MinIO..."
-          until nslookup reportportal-minio && \
-          curl -sf http://reportportal-minio:9000/minio/health/live; do
-            echo "MinIO not ready — retrying in 5s..."
-            sleep 5
-          done
-          echo "MinIO is ready!"
+  - name: wait-for-minio
+    image: curlimages/curl:8.12.0
+    command:
+    - sh
+    - -c
+    args:
+    - |
+      echo "Waiting for MinIO..."
+      until nslookup reportportal-minio && \
+      curl -sf http://reportportal-minio:9000/minio/health/live; do
+        echo "MinIO not ready — retrying in 5s..."
+        sleep 5
+      done
+      echo "MinIO is ready!"
 
 migrations:
   image:
@@ -327,10 +327,10 @@ rabbitmq:
       cpu: 200m
       memory: 384Mi
   extraPlugins:
-    - rabbitmq_auth_backend_ldap
-    - rabbitmq_consistent_hash_exchange
-    - rabbitmq_shovel
-    - rabbitmq_shovel_management
+  - rabbitmq_auth_backend_ldap
+  - rabbitmq_consistent_hash_exchange
+  - rabbitmq_shovel
+  - rabbitmq_shovel_management
   extraConfiguration: |-
     max_message_size = 134217728
 
@@ -348,7 +348,7 @@ minio:
       memory: 256Mi
   persistence:
     annotations:
-      "helm.sh/resource-policy": "keep"
+      helm.sh/resource-policy: keep
   console:
     enabled: false
 
@@ -363,10 +363,10 @@ opensearch:
       cpu: 400m
       memory: 1.5Gi
   extraEnvs:
-    - name: DISABLE_INSTALL_DEMO_CONFIG
-      value: "true"
-    - name: DISABLE_SECURITY_PLUGIN
-      value: "true"
+  - name: DISABLE_INSTALL_DEMO_CONFIG
+    value: "true"
+  - name: DISABLE_SECURITY_PLUGIN
+    value: "true"
 
 database:
   password: rppassword
@@ -385,13 +385,13 @@ storage:
   secretkey: miniopassword
   bucket:
     type: single
-    bucketDefaultName: "rp-bucket"
+    bucketDefaultName: rp-bucket
   ssl: false
 
 ingress:
   enable: true
   hosts:
-    - reportportal.13.93.159.247.nip.io
+  - reportportal.13.93.159.247.nip.io
   path: "/"
   class: nginx
   annotations: {}
