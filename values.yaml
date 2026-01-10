@@ -227,10 +227,10 @@ serviceapi:
       exclusive: false
       autoDelete: false
   chunksize: 200000
+  env: []
   service:
     labels: {}
     annotations: {}
-  env: []
 
 uat:
   replicaCount: 1
@@ -264,6 +264,7 @@ uat:
     secretName: ""
     passwordKeyName: superadmin-password
     password: ""
+  env: []
   service:
     labels: {}
     annotations: {}
@@ -282,7 +283,6 @@ uat:
         sleep 5
       done
       echo "MinIO is ready!"
-  env: []
 
 migrations:
   image:
