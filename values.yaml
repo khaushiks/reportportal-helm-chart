@@ -185,6 +185,8 @@ serviceapi:
     periodSeconds: 30
     timeoutSeconds: 30
     failureThreshold: 3
+  secret:
+    enabled: false   # ← ADD THIS
   service:
     labels: {}
     annotations: {}
