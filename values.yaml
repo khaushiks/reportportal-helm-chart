@@ -17,6 +17,12 @@ global:
     create: true
     maxUnavailable: "1"
 
+k8sWaitFor:
+  image:
+    repository: reportportal/k8s-wait-for
+    tag: latest
+    pullPolicy: Always
+
 serviceanalyzer:
   replicaCount: 0
   image:
