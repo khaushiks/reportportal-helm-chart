@@ -16,7 +16,10 @@ global:
   pdb:
     create: true
     maxUnavailable: "1"
-    
+
+gatewayAPI:
+  enable: false
+
 k8s:
   networking:
     ssl: false
