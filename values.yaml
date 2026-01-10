@@ -1251,22 +1251,17 @@ resourceQuota:
 ## @param postgresql External PostgreSQL Helm Chart as dependency
 ##
 postgresql:
-  ## set to `false` if using a Cloud/On-Premise managed database
-  ##
   install: true
-  image:
-    repository: bitnamilegacy/postgresql
-    tag: 17.5.0-debian-12-r20
   auth:
-    postgresPassword: *dbpassword
-    username: *dbuser
-    password: *dbpassword
-    database: *dbname
+    postgresPassword: rppassword
+    username: postgres
+    password: rppassword
+    database: reportportal
   primary:
     persistence:
       enabled: true
-      size: 10Gi          # Azure requires >=10Gi for many disk types
-      storageClass: ""    # Use default StorageClass (or specify one)
+      size: 10Gi
+      # storageClassName: ""   ← Leave commented unless required
     resources:
       requests:
         cpu: "50m"
@@ -1274,9 +1269,6 @@ postgresql:
       limits:
         cpu: "100m"
         memory: "192Mi"
-    service:
-      ports:
-        postgresql: *dbport
 
 ## @param rabbitmq External RabbitMQ Helm Chart as dependency
 ## Set @param rabbitmq.install to `false` if using a Cloud/On-Premise managed RabbitMQ
@@ -1349,16 +1341,13 @@ opensearch:
 ##
 minio:
   install: true
-  image:
-    repository: bitnamilegacy/minio
-    tag: 2025.7.23-debian-12-r0
   auth:
     rootUser: rpuser
     rootPassword: miniopassword
   persistence:
     enabled: true
     size: 10Gi
-    annotations:
-      "helm.sh/resource-policy": "keep"
+    # Do NOT set storageClassName unless you know it's required
+    # storageClassName: ""   ← Only uncomment if needed
   console:
     enabled: false
