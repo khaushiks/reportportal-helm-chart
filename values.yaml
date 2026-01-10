@@ -1273,6 +1273,10 @@ postgresql:
     service:
       ports:
         postgresql: *dbport
+    persistence:
+      enabled: true
+      size: 10Gi
+      storageClass: "default"
 
 ## @param rabbitmq External RabbitMQ Helm Chart as dependency
 ## Set @param rabbitmq.install to `false` if using a Cloud/On-Premise managed RabbitMQ
@@ -1329,6 +1333,11 @@ opensearch:
   ## @param opensearch.httpPort Port for OpenSearch endpoint
   ##
   httpPort: *searchenginePort
+  master:
+    persistence:
+      enabled: true
+      size: 10Gi
+      storageClass: "default"
   startupProbe:
     initialDelaySeconds: 30
   extraEnvs:
@@ -1349,6 +1358,9 @@ minio:
     rootUser: rpuser
     rootPassword: miniopassword
   persistence:
+    enabled: true          
+    size: 10Gi             
+    storageClass: "default" 
     annotations:
       "helm.sh/resource-policy": "keep"
   console:
