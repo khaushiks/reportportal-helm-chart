@@ -51,7 +51,6 @@ servicejobs:
     labels: {}
     annotations: {}
 
-# --- Keep only essential services with minimal resources ---
 serviceindex:
   replicaCount: 1
   image:
@@ -65,6 +64,19 @@ serviceindex:
     limits:
       cpu: 100m
       memory: 128Mi
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+    successThreshold: 1
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 60
+    periodSeconds: 30
+    timeoutSeconds: 5
+    failureThreshold: 3
   service:
     labels: {}
     annotations: {}
@@ -82,6 +94,19 @@ serviceui:
     limits:
       cpu: 100m
       memory: 128Mi
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+    successThreshold: 1
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 60
+    periodSeconds: 30
+    timeoutSeconds: 5
+    failureThreshold: 3
   service:
     labels: {}
     annotations: {}
@@ -100,6 +125,18 @@ serviceapi:
       cpu: 200m
       memory: 768Mi
   jvmArgs: "-Djava.security.egd=file:/dev/./urandom -XX:+UseG1GC -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0"
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 120
+    periodSeconds: 15
+    timeoutSeconds: 30
+    failureThreshold: 3
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 120
+    periodSeconds: 30
+    timeoutSeconds: 30
+    failureThreshold: 3
   service:
     labels: {}
     annotations: {}
@@ -118,6 +155,18 @@ uat:
       cpu: 150m
       memory: 512Mi
   jvmArgs: "-Djava.security.egd=file:/dev/./urandom -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0"
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 60
+    periodSeconds: 40
+    timeoutSeconds: 5
+    failureThreshold: 10
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 60
+    periodSeconds: 40
+    timeoutSeconds: 5
+    failureThreshold: 10
   service:
     labels: {}
     annotations: {}
