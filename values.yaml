@@ -1298,6 +1298,7 @@ rabbitmq:
   persistence:  # ← ADD THIS SECTION
     enabled: true
     size: 10Gi  # ← Critical: Azure requires minimum 10Gi
+    storageClass: "default"
   resources:  # ← ADD THIS SECTION
     requests:
       cpu: "50m"    # Reduced from 250m → fixes "Insufficient cpu"
