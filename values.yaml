@@ -1263,6 +1263,10 @@ postgresql:
     password: *dbpassword
     database: *dbname
   primary:
+    persistence:
+      enabled: true
+      size: 10Gi          # Azure requires >=10Gi for many disk types
+      storageClass: ""    # Use default StorageClass (or specify one)
     resources:
       requests:
         cpu: "50m"
@@ -1326,6 +1330,9 @@ opensearch:
   ## @param opensearch.singleNode If "true", replicas will be forced from 3 to 1
   ##
   singleNode: true
+  persistence:
+    enabled: true
+    size: 10Gi
   ## @param opensearch.httpPort Port for OpenSearch endpoint
   ##
   httpPort: *searchenginePort
@@ -1349,6 +1356,8 @@ minio:
     rootUser: rpuser
     rootPassword: miniopassword
   persistence:
+    enabled: true
+    size: 10Gi
     annotations:
       "helm.sh/resource-policy": "keep"
   console:
