@@ -35,6 +35,20 @@ serviceanalyzer:
     repository: reportportal/service-auto-analyzer
     tag: 5.15.0
     pullPolicy: Always
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+    successThreshold: 1
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 60
+    periodSeconds: 30
+    timeoutSeconds: 10
+    failureThreshold: 3
+    successThreshold: 1
   resources:
     requests:
       cpu: 10m
