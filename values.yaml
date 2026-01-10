@@ -1251,17 +1251,18 @@ resourceQuota:
 ## @param postgresql External PostgreSQL Helm Chart as dependency
 ##
 postgresql:
+  ## set to `false` if using a Cloud/On-Premise managed database
+  ##
   install: true
+  image:
+    repository: bitnamilegacy/postgresql
+    tag: 17.5.0-debian-12-r20
   auth:
-    postgresPassword: rppassword
-    username: postgres
-    password: rppassword
-    database: reportportal
+    postgresPassword: *dbpassword
+    username: *dbuser
+    password: *dbpassword
+    database: *dbname
   primary:
-    persistence:
-      enabled: true
-      size: 10Gi
-      # storageClassName: ""   ← Leave commented unless required
     resources:
       requests:
         cpu: "50m"
@@ -1269,6 +1270,9 @@ postgresql:
       limits:
         cpu: "100m"
         memory: "192Mi"
+    service:
+      ports:
+        postgresql: *dbport
 
 ## @param rabbitmq External RabbitMQ Helm Chart as dependency
 ## Set @param rabbitmq.install to `false` if using a Cloud/On-Premise managed RabbitMQ
@@ -1322,9 +1326,6 @@ opensearch:
   ## @param opensearch.singleNode If "true", replicas will be forced from 3 to 1
   ##
   singleNode: true
-  persistence:
-    enabled: true
-    size: 10Gi
   ## @param opensearch.httpPort Port for OpenSearch endpoint
   ##
   httpPort: *searchenginePort
@@ -1348,8 +1349,6 @@ minio:
     rootUser: rpuser
     rootPassword: miniopassword
   persistence:
-    enabled: true          # ← Add this
-    size: 10Gi             # ← Critical for Azure
     annotations:
       "helm.sh/resource-policy": "keep"
   console:
